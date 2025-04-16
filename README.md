@@ -88,10 +88,10 @@ To access your VODs via the Twitch API, you'll first need to create a Twitch app
 1. Visit the Twitch Developer Console
 2. Click "Register Your Application"
 3. Fill in the fields:
-  - Name: Any name you want (e.g. vod-backup)
-  - OAuth Redirect URL: https://twitchtokengenerator.com/
-  - Category: Choose something like "Application Integration"
-  - Client Type: Select Confidential
+    - Name: Any name you want (e.g. vod-backup)
+    - OAuth Redirect URL: https://twitchtokengenerator.com/
+    - Category: Choose something like "Application Integration"
+    - Client Type: Select Confidential
 4. Click Create
 5. Copy your new Client ID — you'll need this in the next step
 
@@ -103,8 +103,8 @@ Once you have your Client ID, go to Twitch Token Generator:
 1. Choose "User Token"
 2. Paste in your Client ID from Step 1
 3. Select the following required scopes:
-  - `user:read:email`
-  - `user:read:broadcast`
+    - `user:read:email`
+    - `user:read:broadcast`
 4. Log in and authorize the app
 5. Copy the generated OAuth token and add it to your `.env` file
 

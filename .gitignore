@@ -1,5 +1,4 @@
 .env
-.env.template
 .DS_Store
 /config/vod_urls.txt
 /config/cookies.json

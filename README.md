@@ -48,7 +48,36 @@ To install via [Homebrew](https://brew.sh/):
 brew install yt-dlp jq
 ```
 
-### 3. Create a Twitch App & Generate an OAuth Token
+### 3. Export Your Cookies
+
+Use the [EditThisCookie](https://www.editthiscookie.com/) browser extension and copy/paste the export as `cookies.json` in `/config` - use included `.cookies.json.template` as reference:
+
+- Go to twitch.tv while logged in
+- Export cookies as JSON
+- Save as cookies.json
+- Run the conversion script:
+
+```bash
+python3 convert_cookies.py
+```
+
+This creates cookies.txt (in Netscape format) for use with yt-dlp.
+
+> ‼️ Important: ⚠️ NEVER commit these files — they contain private credentials. ‼️
+
+### 4. Create a .env File
+
+Create a `.env` file in the root of the project using the `.env.template`:
+
+```bash
+CLIENT_ID=your_twitch_client_id
+OAUTH_TOKEN=your_oauth_token
+USER_LOGIN=your_twitch_username
+```
+
+> ‼️ Important: ⚠️ NEVER commit this file — it contains private credentials. ‼️
+
+### 5. Create a Twitch App & Generate an OAuth Token
 
 To access your VODs via the Twitch API, you'll first need to create a Twitch application to obtain a Client ID. We'll use [Dev Console](https://dev.twitch.tv/) for our Client ID along with [Twitch Token Generator](https://twitchtokengenerator.com/) to help generate the token.
 
@@ -76,35 +105,6 @@ Once you have your Client ID, go to Twitch Token Generator:
   - `user:read:broadcast`
 4. Log in and authorize the app
 5. Copy the generated OAuth token and add it to your `.env` file
-
-### 4. Export Your Cookies
-
-Use the [EditThisCookie](https://www.editthiscookie.com/) browser extension and copy/paste the export as `cookies.json` in `/config` - use included `.cookies.json.template` as reference:
-
-- Go to twitch.tv while logged in
-- Export cookies as JSON
-- Save as cookies.json
-- Run the conversion script:
-
-```bash
-python3 convert_cookies.py
-```
-
-This creates cookies.txt (in Netscape format) for use with yt-dlp.
-
-> ‼️ Important: ⚠️ NEVER commit these files — they contain private credentials. ‼️
-
-### 5. Create a .env File
-
-Create a `.env` file in the root of the project using the `.env.template`:
-
-```bash
-CLIENT_ID=your_twitch_client_id
-OAUTH_TOKEN=your_oauth_token
-USER_LOGIN=your_twitch_username
-```
-
-> ‼️ Important: ⚠️ NEVER commit this file — it contains private credentials. ‼️
 
 ## 🧪 Usage
 

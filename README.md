@@ -48,27 +48,34 @@ To install via [Homebrew](https://brew.sh/):
 brew install yt-dlp jq
 ```
 
-### 3. Get an OAuth Token
+### 3. Create a Twitch App & Generate an OAuth Token
 
-For simplicity you can use [Twitch Token Generator](https://twitchtokengenerator.com/) to create OAuth token:
+To access your VODs via the Twitch API, you'll first need to create a Twitch application to obtain a Client ID. We'll use [Dev Console](https://dev.twitch.tv/) for our Client ID along with [Twitch Token Generator](https://twitchtokengenerator.com/) to help generate the token.
 
-- Choose "User Token"
-- Use your Twitch Client ID
-- Select only the following scopes:
-  - user:read:email (Required for most read-level APIs)
-  - user:read:broadcast (Required to list your VODs (archives) via the API)
-- Authenticate and copy your OAuth Token
+#### Step 1: Register a Twitch Application
 
-✅ You only need those two noted scopes for listing and downloading your own VODs.
+1. Visit the Twitch Developer Console
+2. Click "Register Your Application"
+3. Fill in the fields:
+  - Name: Any name you want (e.g. vod-backup)
+  - OAuth Redirect URL: https://twitchtokengenerator.com/
+  - Category: Choose something like "Application Integration"
+  - Client Type: Select Confidential
+4. Click Create
+5. Copy your new Client ID — you'll need this in the next step
 
-Optional: It is possible to configure your own application OAuth via [Dev Console](https://dev.twitch.tv/):
+> 💡 You do not need the Client Secret for this script unless you're doing full token refresh logic (not required).
 
-- Click "Register Your Application"
-- Give it a name
-- Set the OAuth Redirect URL to: https://twitchtokengenerator.com/
-- Pick a category
-- Client type: Confidential
-- Save the Client ID and Client Secret
+#### Step 2: Generate an OAuth Token
+
+Once you have your Client ID, go to Twitch Token Generator:
+1. Choose "User Token"
+2. Paste in your Client ID from Step 1
+3. Select the following required scopes:
+  - `user:read:email`
+  - `user:read:broadcast`
+4. Log in and authorize the app
+5. Copy the generated OAuth token and add it to your `.env` file
 
 ### 4. Export Your Cookies
 
@@ -105,6 +112,7 @@ COOKIES_FILE=cookies.txt
 Run the script:
 
 ```bash
+chmod +x twitch_vod_backup.sh
 ./twitch_vod_backup.sh
 ```
 

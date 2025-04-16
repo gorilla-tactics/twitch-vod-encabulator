@@ -200,16 +200,13 @@ download_vod() {
   return $result
 }
 
-LOG_FILE="./config/backup-$(date +%Y%m%dT%H%M%S).log"
-exec > >(tee -a "$LOG_FILE") 2>&1
-echo "🔍 Starting VOD download process..."
-
 if [ ! -s ./config/vod_urls.txt ]; then
   echo "❌ VOD URL list is empty. No VODs to download."
   exit 1
 fi
 
 # Read VOD URLs from the file and download each one
+echo "🔍 Starting VOD download process..."
 while read -r url; do
   echo "Processing $url"
   download_vod "$url"

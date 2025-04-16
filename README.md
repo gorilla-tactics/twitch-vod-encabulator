@@ -50,6 +50,9 @@ brew install yt-dlp jq
 
 ### 3. Export Your Cookies
 
+> [!CAUTION]
+> ‼️ Important: ⚠️ NEVER commit these files — they contain private credentials. ‼️
+
 Use the [EditThisCookie](https://www.editthiscookie.com/) browser extension and copy/paste the export as `cookies.json` in `/config` - use included `.cookies.json.template` as reference:
 
 - Go to twitch.tv while logged in
@@ -63,9 +66,10 @@ python3 convert_cookies.py
 
 This creates cookies.txt (in Netscape format) for use with yt-dlp.
 
-> ‼️ Important: ⚠️ NEVER commit these files — they contain private credentials. ‼️
-
 ### 4. Create a .env File
+
+> [!CAUTION]
+> ‼️ Important: ⚠️ NEVER commit this file — it contains private credentials. ‼️
 
 Create a `.env` file in the root of the project using the `.env.template`:
 
@@ -74,8 +78,6 @@ CLIENT_ID=your_twitch_client_id
 OAUTH_TOKEN=your_oauth_token
 USER_LOGIN=your_twitch_username
 ```
-
-> ‼️ Important: ⚠️ NEVER commit this file — it contains private credentials. ‼️
 
 ### 5. Create a Twitch App & Generate an OAuth Token
 

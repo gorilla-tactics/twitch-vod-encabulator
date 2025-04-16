@@ -1,0 +1,16 @@
+[
+  {
+    "domain": "example.com",
+    "expirationDate": 1699999999.123456,
+    "hostOnly": false,
+    "httpOnly": false,
+    "name": "session_id",
+    "path": "/",
+    "sameSite": "Lax",
+    "secure": true,
+    "session": true,
+    "storeId": "0",
+    "value": "abc123",
+    "id": 1
+  }
+]

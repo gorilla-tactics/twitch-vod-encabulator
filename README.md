@@ -102,7 +102,7 @@ Create a `.env` file in the root of the project using the `.env.template`:
 CLIENT_ID=your_twitch_client_id
 OAUTH_TOKEN=your_oauth_token
 USER_LOGIN=your_twitch_username
-COOKIES_FILE=cookies.txt
+COOKIES_FILE=./config/cookies.txt
 ```
 
 > ‼️ Important: ⚠️ NEVER commit this file — it contains private credentials. ‼️

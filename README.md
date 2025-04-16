@@ -12,7 +12,7 @@ Happy encabulating! 🍌🦍
 
 - Downloads all public and subscriber-only VODs from your Twitch channel
 - Saves each stream in a dated folder: `vods/YYYY-MM-DDTHH-MM-SS - ID - Title/`
-- Includes metadata and thumbnails 
+- Includes and embeds metadata and thumbnails 
 - Retries failed downloads automatically
 - Uses your Twitch OAuth token and session cookies for access
 

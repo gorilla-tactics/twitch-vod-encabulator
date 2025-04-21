@@ -11,7 +11,7 @@ Happy encabulating! 🍌🦍
 ## 🚀 Features
 
 - Downloads all public and subscriber-only VODs from your Twitch channel
-- Saves each stream in a dated folder: `vods/YYYY-MM-DDTHH-MM-SS - ID - Title/`
+- Saves each stream in a dated folder by VOD type, e.g. `./vods/archive/YYYY-MM-DDTHH-MM-SS - ID - Title/`
 - Includes and embeds metadata and thumbnails 
 - Retries failed downloads automatically
 - Uses your Twitch OAuth token and session cookies for access
@@ -114,8 +114,16 @@ Run the script:
 
 ```bash
 chmod +x twitch_vod_backup.sh
-./twitch_vod_backup.sh
+./twitch_vod_backup.sh [--id VOD_ID] [--url URL] [--date YYYY-MM-DD] [--category NAME] [--type TYPE] [--dry-run]
 ```
+
+Command flag overview:
+
+- `--category NAME`: Case-insensitive match against the Twitch category (game) title. Falls back to "Unknown" if not present.
+- `--type TYPE`: Must be one of archive, highlight, or upload. Filters which types to fetch.
+- `--dry-run`: Simulates downloading without saving any files.
+- `--id`, `--url`, `--date`: Filters specific VODs by metadata.
+- `--help`: Prints available command-line options and exits.
 
 The script will:
 
@@ -124,16 +132,31 @@ The script will:
 - Download them with retries
 - Save each one to its own timestamped folder
 
+Behavior notes:
+
+- VODs with no category (game_name) will be shown as "Unknown" and skipped if `--category` is specified. Misspelled or invalid categories will result in 0 matches.
+- Downloaded files are named using the VOD ID and a sanitized version of the title.
+- File and folder names are sanitized for Windows compatibility using `yt-dlp`’s `--windows-filenames` flag.
+- The script checks for already downloaded VODs and skips them unless updated.
+
 ## 📁 Example Output
 
 ```bash
 vods/
-├── 2025-04-13T20-00-00 - 123456789 - Zelda Run/
-│   ├── Zelda Run.mkv
-│   ├── Zelda Run.info.json
-│   ├── Zelda Run.description
-│   └── Zelda Run.jpg
+├── archive/
+│   └── 2025-04-13 - 123456789 - Zelda_Run/
+│       ├── 123456789_Zelda_Run.mp4
+│       ├── 123456789_Zelda_Run.info.json
+│       ├── 123456789_Zelda_Run.description
+│       └── 123456789_Zelda_Run.jpg
 ```
+
+## 📜 Logs
+
+The script writes a list of all discovered VOD URLs to `./config/vod_urls.txt`. This can be useful for archival verification or debugging.
+
+You can safely delete this file between runs — it is regenerated each time.
+
 
 ## ✅ Future Ideas & Todo
 
